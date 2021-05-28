@@ -1,7 +1,12 @@
 package com.example.esms.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
-    private Long employeeId;
+    private Long id;
     private String name;
     private Boolean sex;
     private String birthday;
@@ -14,12 +19,12 @@ public class Employee {
     private Position position;
     private Department department;
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getId() {
+        return id;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -113,7 +118,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeId=" + employeeId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", sex=" + sex +
                 ", birthday='" + birthday + '\'' +

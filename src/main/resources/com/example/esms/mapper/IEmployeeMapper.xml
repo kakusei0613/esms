@@ -7,15 +7,29 @@
             SELECT * FROM employees_info;
     </select>
     <select id="selectById" resultMap="BaseEmployeeResultMap">
-        SELECT * FROM employees_info WHERE employeeid = #{id};
+        SELECT * FROM employees_info WHERE id = #{id};
     </select>
     <delete id="deleteByEmpId" parameterType="java.lang.Long">
-        DELETE FROM employees WHERE employeeid = #{id};
+        DELETE FROM employees WHERE id = #{id};
     </delete>
-
+    <insert id="insert" parameterType="com.example.esms.domain.Employee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO employees(name, sex, birthday, education, entrytime, phone, address, email, onthejob, position, department)
+        VALUES
+            (#{name, jdbcType=VARCHAR},
+            #{sex, jdbcType=BIT},
+            #{birthday, jdbcType=DATE},
+            #{education.id, jdbcType=TINYINT},
+            #{entryTime, jdbcType=DATE},
+            #{phone, jdbcType=VARCHAR},
+            #{address, jdbcType=VARCHAR},
+            #{email, jdbcType=VARCHAR},
+            #{onTheJob, jdbcType=BIT},
+            #{position.id, jdbcType=TINYINT},
+            #{department.id, jdbcType=TINYINT});
+    </insert>
     <!--    映射结果集-->
     <resultMap id="BaseEmployeeResultMap" type="com.example.esms.domain.Employee">
-        <id column="employeeid" property="employeeId" jdbcType="BIGINT" />
+        <id column="id" property="id" jdbcType="BIGINT" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="sex" property="sex" jdbcType="BIT" />
         <result column="birthday" property="birthday" jdbcType="DATE" />
@@ -25,10 +39,8 @@
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="onthejob" property="onTheJob" jdbcType="BIT" />
         <association property="department" javaType="com.example.esms.domain.Department" columnPrefix="d_">
-            <id column="departmentid" property="departmentId" jdbcType="TINYINT" />
+            <id column="id" property="id" jdbcType="TINYINT" />
             <result column="name" property="name" jdbcType="VARCHAR" />
-            <result column="tel" property="tel" jdbcType="VARCHAR" />
-            <result column="email" property="email" jdbcType="VARCHAR" />
         </association>
         <association property="education" javaType="com.example.esms.domain.Education" columnPrefix="edu_">
             <id column="id" property="id" jdbcType="TINYINT" />

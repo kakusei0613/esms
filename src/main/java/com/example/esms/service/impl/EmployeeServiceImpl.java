@@ -21,4 +21,14 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public Employee selectById(Long id) {
         return employeeMapper.selectById(id);
     }
+
+    @Override
+    public void saveOrUpdate(Employee employee) {
+        employeeMapper.insert(employee);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        employeeMapper.deleteByEmpId(id);
+    }
 }

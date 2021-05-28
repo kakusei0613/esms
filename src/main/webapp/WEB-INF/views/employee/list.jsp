@@ -30,7 +30,7 @@
         <c:forEach items="${employees}" var="employees" varStatus="vs">
             <tr>
                 <td>${vs.count}</td>
-                <td>${employees.employeeId}</td>
+                <td>${employees.id}</td>
                 <td>${employees.name}</td>
                 <td>
                     <c:choose>
@@ -61,8 +61,8 @@
                     </c:choose>
                 </td>
                 <td>
-                    <a href="/employee/input?id=${employees.employeeId}">编辑</a>
-                    <a href="/employee/delete?id=${employees.employeeId}">删除</a>
+                    <a href="/employee/input?id=${employees.id}">编辑</a>
+                    <a href="/employee/delete?id=${employees.id}">删除</a>
                 </td>
             </tr>
         </c:forEach>
