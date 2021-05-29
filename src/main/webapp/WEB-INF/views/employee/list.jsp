@@ -3,8 +3,28 @@
 <html>
 <head>
     <title>员工工资管理系统</title>
+    <%@include file="/WEB-INF/views/common/link.jsp"%>
 </head>
 <body>
+<div align="center">
+    <form action="/employee/list" id="searchForm" method="post">
+        <input type="hidden" name="currentPage" id="currentPage" value="1">
+        关键字：<input type="text" id="keyword" name="keyword" placeholder="输入姓名或者邮箱" value="${qo.keyword}">&nbsp;
+        部门：
+        <select name="deptId" id="dept">
+            <option value="-1">全部</option>
+            <c:forEach items="${departments}" var="d">
+                <option value="${d.id}">${d.name}</option>
+            </c:forEach>
+        </select>
+        <script>
+            // 编写JS脚本，回显已选择的部门
+            $("#dept option[value='${qo.deptId}']").prop("selected", true);
+        </script>
+        <input type="submit" value="搜索">&nbsp;
+    </form>
+    <a href="/employee/input">添加员工</a>
+</div>
 <div align="center">
     <table border="1" cellspacing="0" align="center">
         <thead>
@@ -27,7 +47,7 @@
         </thead>
         <tbody>
         <!--遍历域对象中的学生信息集合-->
-        <c:forEach items="${employees}" var="employees" varStatus="vs">
+        <c:forEach items="${pageResult.data}" var="employees" varStatus="vs">
             <tr>
                 <td>${vs.count}</td>
                 <td>${employees.id}</td>
@@ -68,6 +88,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <%@ include file="/WEB-INF/views/common/page_plus.jsp"%>
 </div>
 </body>
 </html>

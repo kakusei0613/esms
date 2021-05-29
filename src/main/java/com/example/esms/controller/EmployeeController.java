@@ -7,9 +7,11 @@ import com.example.esms.service.IDepartmentService;
 import com.example.esms.service.IEducationService;
 import com.example.esms.service.IEmployeeService;
 import com.example.esms.service.IPositionService;
+import com.example.esms.util.EmployeeQueryObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -24,8 +26,11 @@ public class EmployeeController {
     @Autowired
     IEducationService educationService;
     @RequestMapping("/list")
-    public String selectAll(Model model) {
-        model.addAttribute("employees", employeeService.selectAll());
+    public String list(Model model, @ModelAttribute("qo")EmployeeQueryObject qo) {
+        System.out.println(qo);
+        model.addAttribute("pageResult",employeeService.query(qo));
+//        model.addAttribute("employees", employeeService.selectAll());
+        model.addAttribute("departments", departmentService.selectAll());
         return "/employee/list";
     }
     @RequestMapping("/input")
@@ -41,7 +46,7 @@ public class EmployeeController {
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Employee employee) {
         employeeService.saveOrUpdate(employee);
-        return "/employee/list";
+        return "redirect:/employee/list.do";
     }
     @RequestMapping("/delete")
     public String delete(Long id) {

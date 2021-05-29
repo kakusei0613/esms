@@ -6,12 +6,49 @@
     <select id="selectAll" resultMap="BaseEmployeeResultMap">
             SELECT * FROM employees_info;
     </select>
+    <select id="queryForList" resultMap="BaseEmployeeResultMap" parameterType="com.example.esms.util.EmployeeQueryObject">
+        SELECT * FROM employees_info
+        <where>
+            <if test="keyword!=null and keyword != ''">
+                AND (name LIKE CONCAT('%',#{keyword},'%') OR email LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="deptId != -1">
+                AND (d_id = #{deptId})
+            </if>
+        </where>
+        LIMIT #{pageSize} OFFSET #{start};
+    </select>
     <select id="selectById" resultMap="BaseEmployeeResultMap">
         SELECT * FROM employees_info WHERE id = #{id};
+    </select>
+    <select id="queryForCount" parameterType="com.example.esms.util.EmployeeQueryObject" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM employees_info
+        <where>
+            <if test="keyword!=null and keyword != ''">
+                AND (name LIKE CONCAT('%',#{keyword},'%') OR email LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="deptId != -1">
+                AND (d_id = #{deptId})
+            </if>
+        </where>
     </select>
     <delete id="deleteByEmpId" parameterType="java.lang.Long">
         DELETE FROM employees WHERE id = #{id};
     </delete>
+    <update id="update" parameterType="com.example.esms.domain.Employee">
+        UPDATE employees SET name = #{name, jdbcType=VARCHAR},
+                             sex = #{sex, jdbcType=BIT},
+                             birthday = #{birthday, jdbcType=DATE},
+                             education = #{education.id, jdbcType=TINYINT},
+                             entrytime = #{entryTime, jdbcType=DATE},
+                             phone = #{phone, jdbcType=VARCHAR},
+                             address = #{address, jdbcType=VARCHAR},
+                             email = #{email, jdbcType=VARCHAR},
+                             onTheJob = #{onTheJob, jdbcType=BIT},
+                             position = #{position.id, jdbcType=TINYINT},
+                             department = #{department.id, jdbcType=TINYINT}
+                             WHERE id = #{id, jdbcType=BIGINT};
+    </update>
     <insert id="insert" parameterType="com.example.esms.domain.Employee" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO employees(name, sex, birthday, education, entrytime, phone, address, email, onthejob, position, department)
         VALUES

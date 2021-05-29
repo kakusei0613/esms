@@ -1,3 +1,5 @@
+com\example\esms\util\EmployeeQueryObject.class
+com\example\esms\util\QueryObject.class
 com\example\esms\service\impl\AdminServiceImpl.class
 com\example\esms\domain\Employee.class
 com\example\esms\service\impl\EmployeeServiceImpl.class
@@ -16,6 +18,7 @@ com\example\esms\service\impl\PositionServiceImpl.class
 com\example\esms\service\IEmployeeService.class
 com\example\esms\service\IAdminService.class
 com\example\esms\service\IEducationService.class
+com\example\esms\util\PageResult.class
 com\example\esms\service\IPositionService.class
 com\example\esms\mapper\IAdminMapper.class
 com\example\esms\service\IDepartmentService.class
