@@ -6,7 +6,7 @@
     <select id="selectAll" resultMap="BaseEmployeeResultMap">
             SELECT * FROM employees_info;
     </select>
-    <select id="queryForList" resultMap="BaseEmployeeResultMap" parameterType="com.example.esms.util.EmployeeQueryObject">
+    <select id="queryForList" resultMap="BaseEmployeeResultMap" parameterType="com.example.esms.query.EmployeeQueryObject">
         SELECT * FROM employees_info
         <where>
             <if test="keyword!=null and keyword != ''">
@@ -21,7 +21,7 @@
     <select id="selectById" resultMap="BaseEmployeeResultMap">
         SELECT * FROM employees_info WHERE id = #{id};
     </select>
-    <select id="queryForCount" parameterType="com.example.esms.util.EmployeeQueryObject" resultType="java.lang.Integer">
+    <select id="queryForCount" parameterType="com.example.esms.query.EmployeeQueryObject" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM employees_info
         <where>
             <if test="keyword!=null and keyword != ''">

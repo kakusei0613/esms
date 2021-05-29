@@ -1,4 +1,4 @@
-package com.example.esms.util;
+package com.example.esms.query;
 
 import java.util.List;
 

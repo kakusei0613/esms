@@ -1,8 +1,8 @@
 package com.example.esms.service;
 
 import com.example.esms.domain.Employee;
-import com.example.esms.util.EmployeeQueryObject;
-import com.example.esms.util.PageResult;
+import com.example.esms.query.EmployeeQueryObject;
+import com.example.esms.query.PageResult;
 
 import java.util.List;
 

@@ -15,4 +15,14 @@ public class DepartmentServiceImpl implements IDepartmentService {
     public List<Department> selectAll() {
         return departmentMapper.selectAll();
     }
+
+    @Override
+    public void insert(Department record) {
+        departmentMapper.insert(record);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        departmentMapper.deleteById(id);
+    }
 }

@@ -6,7 +6,7 @@
     <%@include file="/WEB-INF/views/common/link.jsp"%>
 </head>
 <body>
-<div align="center">
+<div style="text-align: left">
     <form action="/employee/list" id="searchForm" method="post">
         <input type="hidden" name="currentPage" id="currentPage" value="1">
         关键字：<input type="text" id="keyword" name="keyword" placeholder="输入姓名或者邮箱" value="${qo.keyword}">&nbsp;
@@ -20,6 +20,11 @@
         <script>
             // 编写JS脚本，回显已选择的部门
             $("#dept option[value='${qo.deptId}']").prop("selected", true);
+        </script>
+        每页显示记录数：
+        <input type="text" id="pageSize" name="pageSize" size="1" placeholder="15">
+        <script>
+            $("#pageSize").val(${qo.pageSize});
         </script>
         <input type="submit" value="搜索">&nbsp;
     </form>

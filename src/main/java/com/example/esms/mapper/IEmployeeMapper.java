@@ -1,8 +1,7 @@
 package com.example.esms.mapper;
 
 import com.example.esms.domain.Employee;
-import com.example.esms.util.EmployeeQueryObject;
-import org.apache.ibatis.annotations.Param;
+import com.example.esms.query.EmployeeQueryObject;
 
 import java.util.List;
 

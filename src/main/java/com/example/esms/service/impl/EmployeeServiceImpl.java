@@ -3,8 +3,8 @@ package com.example.esms.service.impl;
 import com.example.esms.domain.Employee;
 import com.example.esms.mapper.IEmployeeMapper;
 import com.example.esms.service.IEmployeeService;
-import com.example.esms.util.EmployeeQueryObject;
-import com.example.esms.util.PageResult;
+import com.example.esms.query.EmployeeQueryObject;
+import com.example.esms.query.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

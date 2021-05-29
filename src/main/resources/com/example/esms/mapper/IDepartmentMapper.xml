@@ -6,4 +6,10 @@
     <select id="selectAll" resultType="com.example.esms.domain.Department">
         SELECT * FROM departments;
     </select>
+    <insert id="insert" parameterType="com.example.esms.domain.Department">
+        INSERT INTO departments(name) VALUES(#{name});
+    </insert>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM departments WHERE id = #{id};
+    </delete>
 </mapper>

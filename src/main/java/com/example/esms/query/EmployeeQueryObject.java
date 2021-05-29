@@ -1,4 +1,4 @@
-package com.example.esms.util;
+package com.example.esms.query;
 
 public class EmployeeQueryObject extends QueryObject{
 //    对员工的查询不仅要分页，还要带关键字查询
@@ -9,7 +9,7 @@ public class EmployeeQueryObject extends QueryObject{
     public String toString() {
         return "EmployeeQueryObject{" +
                 "keyword='" + keyword + '\'' +
-                ", deptId=" + deptId +
+                ", deptId=" + deptId + ", pageSize=" + this.getPageSize() +
                 '}';
     }
 

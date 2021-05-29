@@ -16,4 +16,14 @@ public class EducationServiceImpl implements IEducationService {
     public List<Education> selectAll() {
         return educationMapper.selectAll();
     }
+
+    @Override
+    public void insert(Education record) {
+        educationMapper.insert(record);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        educationMapper.deleteById(id);
+    }
 }

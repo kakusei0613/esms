@@ -1,13 +1,11 @@
 package com.example.esms.controller;
 
 import com.example.esms.domain.Employee;
-import com.example.esms.mapper.IDepartmentMapper;
-import com.example.esms.mapper.IPositionMapper;
 import com.example.esms.service.IDepartmentService;
 import com.example.esms.service.IEducationService;
 import com.example.esms.service.IEmployeeService;
 import com.example.esms.service.IPositionService;
-import com.example.esms.util.EmployeeQueryObject;
+import com.example.esms.query.EmployeeQueryObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

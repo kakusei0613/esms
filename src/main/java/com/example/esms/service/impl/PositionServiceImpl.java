@@ -17,4 +17,14 @@ public class PositionServiceImpl implements IPositionService {
     public List<Position> selectAll() {
         return positionMapper.selectAll();
     }
+
+    @Override
+    public void insert(Position record) {
+        positionMapper.insert(record);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        positionMapper.deleteById(id);
+    }
 }

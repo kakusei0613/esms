@@ -1,8 +1,8 @@
-package com.example.esms.util;
+package com.example.esms.query;
 
 public class QueryObject {
     private int currentPage = 1;
-    private int pageSize = 2;
+    private int pageSize = 15;
 
     public int getStart() {
         return (currentPage - 1) * pageSize;
