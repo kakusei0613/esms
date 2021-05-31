@@ -16,14 +16,14 @@
         DELETE FROM adminlist WHERE id = #{id};
     </delete>
     <insert id="recorder" parameterType="java.lang.String">
-        INSERT INTO actionrecorder VALUES(#{username}, SELECT NOW(), #{action}, #{ipaddress});
+        INSERT INTO actionrecorder VALUES(#{username}, (SELECT NOW()), #{action}, #{ipaddress});
     </insert>
     <select id="selectAction" parameterType="com.example.esms.domain.Admin" resultMap="baseRecordMap">
         SELECT * FROM useractionrecorder WHERE username = #{username};
     </select>
     <resultMap id="baseRecordMap" type="com.example.esms.domain.UserActionRecord">
         <result column="username" property="username" jdbcType="VARCHAR"/>
-        <result column="actiontime" property="time" jdbcType="DATETIME"/>
+        <result column="actiontime" property="time" jdbcType="DATE"/>
         <result column="action" property="action" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
     </resultMap>

@@ -11,7 +11,7 @@
 </div>
 <script>
     $("#first").click(function () {
-        if($("#currentPage").val() == 1) {
+        if( $("#currentPage").val() == 1) {
             return;
         }
         $("#currentPage").val(1);
@@ -25,11 +25,14 @@
         $("#searchForm").submit();
     })
     $("#prev").click(function () {
+        if( $("#currentPage").val() == 1) {
+            return;
+        }
         $("#currentPage").val(${pageResult.prevPage});
         $("#searchForm").submit();
     })
     $("#last").click(function () {
-        if( (${pageResult.lastPage}) == 1) {
+        if( (${pageResult.totalPage}) == 1) {
             return;
         }
         $("#currentPage").val(${pageResult.totalPage});

@@ -6,9 +6,12 @@
     <%@include file="/WEB-INF/views/common/link.jsp"%>
 </head>
 <body>
-<div style="text-align: left">
+<div style="text-align: center">
     <form action="/employee/list" id="searchForm" method="post">
-        <input type="hidden" name="currentPage" id="currentPage" value="1">
+        <input type="hidden" name="currentPage" id="currentPage">
+        <script>
+            $("#currentPage").val(${qo.currentPage});
+        </script>
         关键字：<input type="text" id="keyword" name="keyword" placeholder="输入姓名或者邮箱" value="${qo.keyword}">&nbsp;
         部门：
         <select name="deptId" id="dept">
@@ -31,7 +34,7 @@
     <a href="/employee/input">添加员工</a>
 </div>
 <div align="center">
-    <table border="1" cellspacing="0" align="center">
+    <table border="1" cellspacing="2" align="center">
         <thead>
         <tr>
             <th>序号</th>

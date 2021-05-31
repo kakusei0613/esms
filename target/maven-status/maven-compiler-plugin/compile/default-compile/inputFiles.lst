@@ -8,6 +8,7 @@ C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\domain\Departme
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\controller\DepartmentController.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\mapper\IDepartmentMapper.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\impl\EmployeeServiceImpl.java
+C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\controller\EducationController.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\domain\Admin.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\impl\EducationServiceImpl.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\IEducationService.java
@@ -16,6 +17,7 @@ C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\domain\Salary.j
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\mapper\IAdminMapper.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\impl\PositionServiceImpl.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\mapper\IPositionMapper.java
+C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\domain\UserActionRecord.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\mapper\IEducationMapper.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\impl\DepartmentServiceImpl.java
 C:\Users\hV0nC7\IdeaProjects\esms\src\main\java\com\example\esms\service\IEmployeeService.java

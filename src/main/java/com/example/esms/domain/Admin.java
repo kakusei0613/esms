@@ -2,8 +2,17 @@ package com.example.esms.domain;
 
 public class Admin {
     private Integer id;
-    private String userName;
-    private String userPassword;
+    private String username;
+    private String password;
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", userName='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -14,18 +23,18 @@ public class Admin {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

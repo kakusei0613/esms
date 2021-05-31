@@ -18,7 +18,7 @@ public class AdminController {
     IAdminService adminService;
     @RequestMapping("/login")
     public String login(Model model, String username, String password) {
-        if(adminService.login(username, password)) {
+        if(!adminService.login(username, password)) {
             return "redirect:/login.jsp";
         }
         else {
