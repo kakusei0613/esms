@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.esms.mapper.IEmployeeMapper">
+    <select id="selectAll" resultMap="BaseEmployeeResultMap">
+            SELECT * FROM employees_info;
+    </select>
+    <select id="queryForList" resultMap="BaseEmployeeResultMap" parameterType="com.example.esms.query.EmployeeQueryObject">
+        SELECT * FROM employees_info
+        <where>
+            <if test="keyword!=null and keyword != ''">
+                AND (name LIKE CONCAT('%',#{keyword},'%') OR email LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="deptId != -1">
+                AND (d_id = #{deptId})
+            </if>
+        </where>
+        LIMIT #{pageSize} OFFSET #{start};
+    </select>
+    <select id="selectById" resultMap="BaseEmployeeResultMap">
+        SELECT * FROM employees_info WHERE id = #{id};
+    </select>
+    <select id="queryForCount" parameterType="com.example.esms.query.EmployeeQueryObject" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM employees_info
+        <where>
+            <if test="keyword!=null and keyword != ''">
+                AND (name LIKE CONCAT('%',#{keyword},'%') OR email LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="deptId != -1">
+                AND (d_id = #{deptId})
+            </if>
+        </where>
+    </select>
+    <delete id="deleteByEmpId" parameterType="java.lang.Long">
+        DELETE FROM employees WHERE id = #{id};
+    </delete>
+    <update id="update" parameterType="com.example.esms.domain.Employee">
+        UPDATE employees SET name = #{name, jdbcType=VARCHAR},
+                             sex = #{sex, jdbcType=BIT},
+                             birthday = #{birthday, jdbcType=DATE},
+                             education = #{education.id, jdbcType=TINYINT},
+                             entrytime = #{entryTime, jdbcType=DATE},
+                             phone = #{phone, jdbcType=VARCHAR},
+                             address = #{address, jdbcType=VARCHAR},
+                             email = #{email, jdbcType=VARCHAR},
+                             onTheJob = #{onTheJob, jdbcType=BIT},
+                             position = #{position.id, jdbcType=TINYINT},
+                             department = #{department.id, jdbcType=TINYINT}
+                             WHERE id = #{id, jdbcType=BIGINT};
+    </update>
+    <insert id="insert" parameterType="com.example.esms.domain.Employee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO employees(name, sex, birthday, education, entrytime, phone, address, email, onthejob, position, department)
+        VALUES
+            (#{name, jdbcType=VARCHAR},
+            #{sex, jdbcType=BIT},
+            #{birthday, jdbcType=DATE},
+            #{education.id, jdbcType=TINYINT},
+            #{entryTime, jdbcType=DATE},
+            #{phone, jdbcType=VARCHAR},
+            #{address, jdbcType=VARCHAR},
+            #{email, jdbcType=VARCHAR},
+            #{onTheJob, jdbcType=BIT},
+            #{position.id, jdbcType=TINYINT},
+            #{department.id, jdbcType=TINYINT});
+    </insert>
+    <!--    映射结果集-->
+    <resultMap id="BaseEmployeeResultMap" type="com.example.esms.domain.Employee">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="BIT" />
+        <result column="birthday" property="birthday" jdbcType="DATE" />
+        <result column="entrytime" property="entryTime" jdbcType="DATE" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="onthejob" property="onTheJob" jdbcType="BIT" />
+        <association property="department" javaType="com.example.esms.domain.Department" columnPrefix="d_">
+            <id column="id" property="id" jdbcType="TINYINT" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+        </association>
+        <association property="education" javaType="com.example.esms.domain.Education" columnPrefix="edu_">
+            <id column="id" property="id" jdbcType="TINYINT" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+        </association>
+        <association property="position" javaType="com.example.esms.domain.Position" columnPrefix="p_">
+            <id column="id" property="id" jdbcType="TINYINT" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.esms.mapper.IAdminMapper">
+    <select id="selectByUserName" resultType="com.example.esms.domain.Admin">
+        SELECT * FROM adminlist WHERE username = #{username} AND password = #{password};
+    </select>
+    <select id="selectAll" resultType="com.example.esms.domain.Admin">
+        SELECT * FROM adminlist;
+    </select>
+    <insert id="insert" parameterType="com.example.esms.domain.Admin">
+        INSERT INTO adminlist(username,password) VALUES(#{userName}, #{userPassword});
+    </insert>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM adminlist WHERE id = #{id};
+    </delete>
+</mapper>
