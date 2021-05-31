@@ -27,7 +27,7 @@
                 <td>${position.id}</td>
                 <td>${position.name}</td>
                 <td>
-                    <a href="/department/delete?id=${position.id}">删除</a>
+                    <a href="/position/delete?id=${position.id}">删除</a>
                 </td>
             </tr>
         </c:forEach>

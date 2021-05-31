@@ -93,7 +93,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <%@ include file="/WEB-INF/views/common/page_plus.jsp"%>
+    <%@ include file="/WEB-INF/views/common/page.jsp"%>
 </div>
 </body>
 </html>

@@ -25,7 +25,6 @@ public class EmployeeController {
     IEducationService educationService;
     @RequestMapping("/list")
     public String list(Model model, @ModelAttribute("qo")EmployeeQueryObject qo) {
-        System.out.println(qo);
         model.addAttribute("pageResult",employeeService.query(qo));
 //        model.addAttribute("employees", employeeService.selectAll());
         model.addAttribute("departments", departmentService.selectAll());
