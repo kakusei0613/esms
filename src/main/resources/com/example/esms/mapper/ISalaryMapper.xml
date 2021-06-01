@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.esms.mapper.ISalaryMapper">
+    <select id="queryForList" parameterType="com.example.esms.query.SalaryQueryObject" resultMap="baseSalaryRecordMap">
+        SELECT e.id AS e_id, e.name AS e_name,
+               d.id AS d_id, d.name AS d_name,
+               p.id AS p_id, p.name AS p_name,
+               s.base, s.extra, #{date} AS d_date,
+               ROUND((SELECT countOfAbsence(e_id,#{date}) ) * base / 30) AS deduction
+        FROM employees AS e LEFT JOIN departments AS d ON(e.department = d.id)
+            LEFT JOIN positions AS p ON (e.position = p.id)
+            LEFT JOIN salary AS s ON(e.id = s.employeeid);
+        <where>
+            <if test="keyword!=null and keyword!= ''">
+                AND (e_id = #{keyword} OR e_name LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                AND d_id = #{departmentId}
+            </if>
+            <if test="date != null and date != ''">
+                AND d_date LIKE CONCAT('%',#{date},'%')
+            </if>
+        </where>
+L       LIMIT  #{pageSize} OFFSET #{start};
+    </select>
+    <resultMap id="baseSalaryRecordMap" type="com.example.esms.domain.SalaryRecord">
+        <result column="e_name" property="name" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="deduction" property="deduction" jdbcType="DECIMAL"/>
+        <association property="employee" javaType="com.example.esms.domain.Salary">
+            <result column="e_id" property="employeeId" jdbcType="BIGINT"/>
+            <result column="base" property="base" jdbcType="DECIMAL"/>
+            <result column="extra" property="extra" jdbcType="DECIMAL"/>
+        </association>
+        <association property="position" javaType="com.example.esms.domain.Position" columnPrefix="p_">
+            <result column="id" property="id" jdbcType="TINYINT"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+        </association>
+        <association property="department" javaType="com.example.esms.domain.Department" columnPrefix="d_">
+            <result column="id" property="id" jdbcType="TINYINT"/>
+            <result column="name" property="name" jdbcType="VARCHAR"></result>
+        </association>
+    </resultMap>
+</mapper>

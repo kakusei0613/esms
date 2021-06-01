@@ -3,10 +3,10 @@ package com.example.esms.domain;
 public class SalaryRecord {
     private Salary employee;
     private String name;
-    private String department;
-    private String position;
+    private Department department;
+    private Position position;
+    private String date;
     private Double deduction;
-    private Double actSalary;
 
     public Salary getEmployee() {
         return employee;
@@ -24,20 +24,28 @@ public class SalaryRecord {
         this.name = name;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Double getDeduction() {
@@ -49,10 +57,6 @@ public class SalaryRecord {
     }
 
     public Double getActSalary() {
-        return actSalary;
-    }
-
-    public void setActSalary(Double actSalary) {
-        this.actSalary = actSalary;
+        return (employee.getBase() + employee.getExtra() - this.deduction);
     }
 }
