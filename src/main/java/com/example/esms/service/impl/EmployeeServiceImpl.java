@@ -48,4 +48,17 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         return new PageResult<Employee>(employeeMapper.queryForList(record), totalCount, record.getPageSize(), record.getCurrentPage());
     }
+
+    @Override
+    public void todayAbsence(Long id) {
+//        此功能也能够使用INSERT BEFORE TRIGGER代替
+//        如果今天还未被登记缺勤，则登记
+        if(employeeMapper.registered(id) == 0) {
+            employeeMapper.todayAbsence(id);
+        }
+//        若已登记过，则返回
+        else {
+            return;
+        }
+    }
 }

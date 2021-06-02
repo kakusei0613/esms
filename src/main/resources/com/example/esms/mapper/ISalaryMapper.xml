@@ -19,6 +19,7 @@
             <if test="departmentId != -1">
                 AND d.id = #{departmentId}
             </if>
+            AND e.onthejob = 1
         </where>
         LIMIT  #{pageSize} OFFSET #{start};
     </select>
@@ -35,7 +36,28 @@
             <if test="departmentId != -1">
                 AND d.id = #{departmentId}
             </if>
+            AND e.onthejob = 1
         </where>
+    </select>
+    <select id="todayAbsenceCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM timesheet AS t
+            LEFT JOIN employees AS e ON (t.empid = e.id)
+            LEFT JOIN departments AS d ON (e.department = d.id)
+            WHERE t.date = (SELECT CURDATE());
+    </select>
+    <select id="todayAbsence" parameterType="com.example.esms.query.AbsenceQueryObject" resultMap="baseAbsenceRecordMap">
+        SELECT e.id AS e_id, e.name AS e_name,
+               d.id AS d_id, d.name AS d_name
+        FROM timesheet AS t
+             LEFT JOIN employees AS e ON (t.empid = e.id)
+             LEFT JOIN departments AS d ON (e.department = d.id)
+             <where>
+                 <if test="#{departmentId} != -1">
+                     AND d.id = #{departmentId}
+                 </if>
+                 AND t.date = (SELECT CURDATE())
+             </where>
+        LIMIT #{pageSize} OFFSET #{start};
     </select>
     <resultMap id="baseSalaryRecordMap" type="com.example.esms.domain.SalaryRecord">
         <result column="e_name" property="name" jdbcType="VARCHAR"/>
@@ -52,6 +74,15 @@
         <association property="department" javaType="com.example.esms.domain.Department" columnPrefix="d_">
             <result column="id" property="id" jdbcType="TINYINT"/>
             <result column="name" property="name" jdbcType="VARCHAR"></result>
+        </association>
+    </resultMap>
+<!--    缺席记录结果集映射-->
+    <resultMap id="baseAbsenceRecordMap" type="com.example.esms.domain.AbsenceRecord">
+        <result column="e_id" property="id" jdbcType="BIGINT"/>
+        <result column="e_name" property="name" jdbcType="VARCHAR"/>
+        <association property="department" javaType="com.example.esms.domain.Department" columnPrefix="d_">
+            <result column="id" property="id" jdbcType="TINYINT"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
         </association>
     </resultMap>
 </mapper>

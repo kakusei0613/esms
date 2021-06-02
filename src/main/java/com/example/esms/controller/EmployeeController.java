@@ -43,11 +43,16 @@ public class EmployeeController {
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Employee employee) {
         employeeService.saveOrUpdate(employee);
-        return "redirect:/employee/list.do";
+        return "redirect:/employee/list";
     }
     @RequestMapping("/delete")
     public String delete(Long id) {
         employeeService.deleteById(id);
-        return "/employee/list";
+        return "redirect:/employee/list";
+    }
+    @RequestMapping("/absence")
+    public String absence(Long id) {
+        employeeService.todayAbsence(id);
+        return "redirect:/employee/list";
     }
 }

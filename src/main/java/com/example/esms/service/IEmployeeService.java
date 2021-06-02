@@ -12,4 +12,5 @@ public interface IEmployeeService {
     public PageResult<Employee> query(EmployeeQueryObject record);
     public void saveOrUpdate(Employee employee);
     public void deleteById(Long id);
+    public void todayAbsence(Long id);
 }

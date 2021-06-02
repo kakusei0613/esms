@@ -29,6 +29,19 @@
         <script>
             $("#pageSize").val(${qo.pageSize});
         </script>
+        显示不在职员工:
+        <select name="showNotOnJob" id="showNotOnJob">
+            <option value="1">是</option>
+            <option value="0">否</option>
+        </select>
+        <script>
+            if(${qo.showNotOnJob}) {
+                $("#showNotOnJob option[value='1']").prop("selected", true);
+            }
+            else {
+                $("#showNotOnJob option[value='0']").prop("selected", true);
+            }
+        </script>
         <input type="submit" value="搜索">&nbsp;
     </form>
     <a href="/employee/input">添加员工</a>
@@ -91,6 +104,7 @@
                 <td>
                     <a href="/employee/input?id=${employees.id}">编辑</a>
                     <a href="/employee/delete?id=${employees.id}">删除</a>
+                    <a href="/employee/absence?id=${employees.id}">登记缺勤</a>
                 </td>
             </tr>
         </c:forEach>

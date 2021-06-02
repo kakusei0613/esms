@@ -4,6 +4,7 @@ public class EmployeeQueryObject extends QueryObject{
 //    对员工的查询不仅要分页，还要带关键字查询
     private String keyword;
     private Integer deptId = -1;
+    private Boolean showNotOnJob = Boolean.FALSE;
 
     @Override
     public String toString() {
@@ -27,6 +28,14 @@ public class EmployeeQueryObject extends QueryObject{
 
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
+    }
+
+    public void setShowNotOnJob(Boolean onTheJob) {
+        this.showNotOnJob = onTheJob;
+    }
+
+    public Boolean getShowNotOnJob() {
+        return showNotOnJob;
     }
 
     @Override

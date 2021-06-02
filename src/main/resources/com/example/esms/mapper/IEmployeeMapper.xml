@@ -15,6 +15,9 @@
             <if test="deptId != -1">
                 AND (d_id = #{deptId})
             </if>
+            <if test="showNotOnJob == false">
+                AND onthejob = 1
+            </if>
         </where>
         LIMIT #{pageSize} OFFSET #{start};
     </select>
@@ -29,6 +32,9 @@
             </if>
             <if test="deptId != -1">
                 AND (d_id = #{deptId})
+            </if>
+            <if test="showNotOnJob == false">
+                AND onthejob = 1
             </if>
         </where>
     </select>
@@ -64,6 +70,12 @@
             #{position.id, jdbcType=TINYINT},
             #{department.id, jdbcType=TINYINT});
     </insert>
+    <insert id="todayAbsence" parameterType="java.lang.Long">
+        INSERT INTO timesheet(empid, date) VALUES (#{id}, (SELECT CURDATE()));
+    </insert>
+    <select id="registered" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM timesheet WHERE empid = #{id} AND date = (SELECT CURDATE());
+    </select>
     <!--    映射结果集-->
     <resultMap id="BaseEmployeeResultMap" type="com.example.esms.domain.Employee">
         <id column="id" property="id" jdbcType="BIGINT" />
