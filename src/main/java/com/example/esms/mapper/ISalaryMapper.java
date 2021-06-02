@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ISalaryMapper {
     public List<SalaryRecord> queryForList(SalaryQueryObject sqo);
+    public Integer queryForCount(SalaryQueryObject sqo);
 }

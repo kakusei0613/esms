@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<div style="text-align: center;">
+<div>
     第 ${pageResult.currentPage} 页，共 ${pageResult.totalPage} 页<br>
     <input type="button" id="first" value="首页">
     <input type="button" id="prev" value="上一页">

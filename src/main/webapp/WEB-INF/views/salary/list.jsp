@@ -24,6 +24,7 @@
             // 编写JS脚本，回显已选择的部门
             $("#dept option[value='${sqo.departmentId}']").prop("selected", true);
         </script>
+        <input type="month" id="dt" name="dt" value="${sqo.date}">
         每页显示记录数：
         <input type="text" id="pageSize" name="pageSize" size="1" placeholder="15">
         <script>
@@ -49,10 +50,10 @@
         </thead>
         <tbody>
         <!--遍历域对象中的学生信息集合-->
-        <c:forEach items="${pageRsult.data}" var="sr" varStatus="vs">
+        <c:forEach items="${pageResult.data}" var="sr" varStatus="vs">
             <tr>
                 <td>${vs.count}</td>
-                <td>${sr.employee.id}</td>
+                <td>${sr.employee.employeeId}</td>
                 <td>${sr.name}</td>
                 <td>${sr.department.name}</td>
                 <td>${sr.position.name}</td>
@@ -64,6 +65,9 @@
         </c:forEach>
         </tbody>
     </table>
+</div>
+<div style="text-align: center;">
+    <%@ include file="/WEB-INF/views/common/page.jsp"%>
 </div>
 </body>
 </html>

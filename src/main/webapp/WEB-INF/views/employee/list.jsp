@@ -80,11 +80,11 @@
                 <td>${employees.position.name}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${employees.onTheJob} == 0">
-                            否
+                        <c:when test="${employees.onTheJob}">
+                            是
                         </c:when>
                         <c:otherwise>
-                            是
+                            否
                         </c:otherwise>
                     </c:choose>
                 </td>

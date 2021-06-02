@@ -1,9 +1,20 @@
 package com.example.esms.query;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class SalaryQueryObject extends QueryObject{
     private String keyword;
     private String date;
     private Integer departmentId;
+
+    public SalaryQueryObject() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        this.date = sdf.format(date);
+        this.departmentId = -1;
+        System.out.println(this.date);
+    }
 
     public String getKeyword() {
         return keyword;

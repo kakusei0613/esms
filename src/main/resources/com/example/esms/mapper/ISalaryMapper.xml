@@ -7,27 +7,38 @@
         SELECT e.id AS e_id, e.name AS e_name,
                d.id AS d_id, d.name AS d_name,
                p.id AS p_id, p.name AS p_name,
-               s.base, s.extra, #{date} AS d_date,
+               s.base, s.extra,
                ROUND((SELECT countOfAbsence(e_id,#{date}) ) * base / 30) AS deduction
         FROM employees AS e LEFT JOIN departments AS d ON(e.department = d.id)
             LEFT JOIN positions AS p ON (e.position = p.id)
-            LEFT JOIN salary AS s ON(e.id = s.employeeid);
+            LEFT JOIN salary AS s ON(e.id = s.employeeid)
         <where>
             <if test="keyword!=null and keyword!= ''">
-                AND (e_id = #{keyword} OR e_name LIKE CONCAT('%',#{keyword},'%'))
+                AND (e.id = #{keyword} OR e.name LIKE CONCAT('%',#{keyword},'%'))
             </if>
-            <if test="departmentId != null and departmentId != ''">
-                AND d_id = #{departmentId}
-            </if>
-            <if test="date != null and date != ''">
-                AND d_date LIKE CONCAT('%',#{date},'%')
+            <if test="departmentId != -1">
+                AND d.id = #{departmentId}
             </if>
         </where>
-L       LIMIT  #{pageSize} OFFSET #{start};
+        LIMIT  #{pageSize} OFFSET #{start};
+    </select>
+    <select id="queryForCount" parameterType="com.example.esms.query.SalaryQueryObject" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM employees AS e LEFT JOIN departments AS d ON(e.department = d.id)
+        LEFT JOIN positions AS p ON (e.position = p.id)
+        LEFT JOIN salary AS s ON(e.id = s.employeeid)
+        <where>
+            <if test="keyword!=null and keyword!= ''">
+                AND (e.id = #{keyword} OR e.name LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="departmentId != -1">
+                AND d.id = #{departmentId}
+            </if>
+        </where>
     </select>
     <resultMap id="baseSalaryRecordMap" type="com.example.esms.domain.SalaryRecord">
         <result column="e_name" property="name" jdbcType="VARCHAR"/>
-        <result column="date" property="date" jdbcType="VARCHAR"/>
         <result column="deduction" property="deduction" jdbcType="DECIMAL"/>
         <association property="employee" javaType="com.example.esms.domain.Salary">
             <result column="e_id" property="employeeId" jdbcType="BIGINT"/>

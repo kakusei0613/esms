@@ -5,7 +5,6 @@ public class SalaryRecord {
     private String name;
     private Department department;
     private Position position;
-    private String date;
     private Double deduction;
 
     public Salary getEmployee() {
@@ -40,14 +39,6 @@ public class SalaryRecord {
         this.position = position;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public Double getDeduction() {
         return deduction;
     }
@@ -58,5 +49,16 @@ public class SalaryRecord {
 
     public Double getActSalary() {
         return (employee.getBase() + employee.getExtra() - this.deduction);
+    }
+
+    @Override
+    public String toString() {
+        return "SalaryRecord{" +
+                "employee=" + employee +
+                ", name='" + name + '\'' +
+                ", department=" + department +
+                ", position=" + position +
+                ", deduction=" + deduction +
+                '}';
     }
 }
